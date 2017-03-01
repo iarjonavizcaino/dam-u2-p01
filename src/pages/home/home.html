@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Ionic Blank
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="todo" (ngSubmit)="validate()">
+    <ion-item>
+      <ion-label floating>Nombre</ion-label>
+      <ion-input type="text" formControlName="name"></ion-input>
+      <!--<div class="alert alert-danger" *ngIf="!todo.controls['name'].valid && todo.controls['name'].touched">El nombre es obligatorio</div>-->
+
+    </ion-item>
+    <p *ngIf="name.hasError('required') && name.touched" color="danger" padding-left>El nombre es obligatorio</p>
+    <ion-item>
+      <ion-label floating>Email</ion-label>
+      <ion-input formControlName="email" type="email"></ion-input>
+    </ion-item>
+    <p *ngIf="email.hasError('required') && email.touched" color="danger" padding-left>El email es obligatorio</p>
+    <p *ngIf="email.hasError('pattern') && email.touched" color="danger" padding-left>Email con formato erróneo</p>
+    <ion-fab bottom right>
+      <button ion-fab type="submit" [disabled]="!todo.valid"><ion-icon name="add"></ion-icon></button>
+    </ion-fab>
+  </form>
+
+</ion-content>
